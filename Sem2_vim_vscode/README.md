@@ -177,4 +177,5 @@ Vim &mdash; modal editor (mode == режим). Несколько самых в�
 
 ## vscode
 
-TODO
+Plugins:
+`tabnine` &mdash; AI (just try)

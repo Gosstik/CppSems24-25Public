@@ -185,6 +185,11 @@ void Snippets() {
     std::cout << std::format("id {:*<10d}\n", val);  // 22********
     std::cout << std::format("id {:#^10d}\n", val);  // ####22####
     std::cout << std::format("id {: >10d}\n", val);  //         22
+
+    // quoted output
+    // quoted: #include <iomanip>
+    std::cout << "c: " << std::quoted("abc") << '\n';
+    std::cout << "c: " << std::quoted(std::string(3, 'a')) << '\n';
   }
 }
 

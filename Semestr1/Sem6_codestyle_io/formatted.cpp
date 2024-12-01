@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 
+#include "hakhfw.h"
+
 struct S {
  private:
   int x_ = 0;
@@ -11,14 +13,11 @@ struct S {
   int z = 10;
 };
 
-void FooFunction(
-    size_t first_argument, int second_argument, bool third_arg, char fourth) {}
+void FooFunction(size_t first_argument, int second_argument, bool third_arg,
+                 char fourth) {}
 
-void FooFunction(
-    size_t first_argument,
-    int second_argument,
-    bool third_argument,
-    bool fourth_argumment) {}
+void FooFunction(size_t first_argument, int second_argument,
+                 bool third_argument, bool fourth_argumment) {}
 
 int main() {
   std::vector<int> vec;

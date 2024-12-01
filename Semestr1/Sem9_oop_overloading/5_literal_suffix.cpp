@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 // https://en.cppreference.com/w/cpp/language/user_literal
 
@@ -28,5 +29,12 @@ int main() {
     std::cout << lat1.val << '\n';
 
     Foo(3.0_lat);
+  }
+
+  {
+    // using namespace std::string_literals;
+    using std::string_literals::operator""s;
+
+    auto s = "abc"s; // std::string
   }
 }

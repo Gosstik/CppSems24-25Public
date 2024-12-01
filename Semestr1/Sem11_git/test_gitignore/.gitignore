@@ -1,0 +1,12 @@
+file.txt
+
+# It is not possible to re-include a file if a parent directory of that file is excluded
+dir/
+!/dir/
+!/dir/important.txt
+
+# Better for excluding all directories with same name
+/**/dir/*
+!/**/important.txt
+
+# ??? Why /outer/dir/important.txt is ignored now?

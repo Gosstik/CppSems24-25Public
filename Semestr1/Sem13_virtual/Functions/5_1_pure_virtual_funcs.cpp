@@ -5,15 +5,24 @@
 // !!! otherwise derived class is abstract
 
 struct Base {  // NOLINT
-  virtual void VirtualFunc() = 0;
+  virtual void Foo() = 0;
 };
 
+void Base::Foo() {
+  std::cout << "Base::Foo()\n";
+}
+
 struct Derived : Base {
-  void VirtualFunc() override { std::cout << "VirtualFunc()\n"; }
+  void Foo() override {
+    std::cout << "Derived::Foo()\n";
+  }
 };
 
 int main() {
   // Base b;  // CE
   Derived d;
   Base& rb = d;  // OK
+
+  rb.Foo();
+  rb.Base::Foo(); // OK, devirtualization
 }

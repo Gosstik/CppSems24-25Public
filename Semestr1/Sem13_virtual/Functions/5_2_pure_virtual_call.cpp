@@ -1,7 +1,7 @@
 #include <iostream>
 
 struct Base {  // NOLINT
-  virtual void VirtualFunc() = 0;
+  virtual void Foo() = 0;
 
   void Foo() {  // NOLINT
     std::cout << "f\n";
@@ -18,12 +18,12 @@ struct Base {  // NOLINT
   virtual ~Base() = default;
 };
 
-void Base::VirtualFunc() {
+void Base::Foo() {
   std::cout << "Base::VirtualFunc()\n";
 }
 
 struct Derived : Base {
-  void VirtualFunc() override { std::cout << "Derived::VirtualFunc()\n"; }
+  void Foo() override { std::cout << "Derived::VirtualFunc()\n"; }
 
   Derived() { std::cout << "Derived()\n"; };
 };
@@ -31,5 +31,5 @@ struct Derived : Base {
 int main() {
   // Derived d;
   Base& b = *new Derived();
-  b.VirtualFunc();
+  b.Foo();
 }

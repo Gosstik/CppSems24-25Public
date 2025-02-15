@@ -7,7 +7,15 @@ void TerminateHandler() {
   std::exception_ptr eptr = std::current_exception();
   if (eptr) {
     std::cout << "Terminate is called because of exception" << std::endl;
-    std::rethrow_exception(eptr);  // throw exception inside terminate ???
+    // catch is the only way to get info from exception_ptr
+    try {
+      std::rethrow_exception(eptr);  // throw exception inside terminate ???
+    } catch(std::exception& e) {
+      std::cout << typeid(e).name() << '\n';
+      std::cout << "info: " << e.what() << std::endl;
+    } catch(...) {
+      std::cout << "Unhandled exception" << std::endl;
+    }
   }
   std::cout << "Call to abort()" << std::endl;
   std::abort();

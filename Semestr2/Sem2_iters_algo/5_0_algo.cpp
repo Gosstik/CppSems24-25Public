@@ -26,6 +26,7 @@
 // remove_if
 // replace
 // replace_if
+// binary_search
 
 // Even more complex
 

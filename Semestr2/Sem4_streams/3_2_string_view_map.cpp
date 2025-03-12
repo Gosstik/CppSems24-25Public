@@ -32,6 +32,7 @@ int main() {
   // name_to_course.insert({"Nick", 1});
   // name_to_course.insert({"James", 4});
   // name_to_course.insert({"Carl", 3});
+  // name_to_course.insert({std::string("Caroline"), 10});
 
   // // Is it valid?
   // for (auto p: name_to_course) {

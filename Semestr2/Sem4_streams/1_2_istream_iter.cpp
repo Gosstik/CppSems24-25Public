@@ -9,7 +9,9 @@
 // istream is Input, but not Forward iterator
 
 int main() {
+  std::cout << "1\n";
   std::istream_iterator<int> it(std::cin);
+  std::cout << "2\n"; // will be waiting input to construct it
   std::vector<int> v;
 
   //// Option 1

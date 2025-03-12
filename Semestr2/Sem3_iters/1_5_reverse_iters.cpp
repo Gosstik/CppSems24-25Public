@@ -53,10 +53,19 @@ void PrintVec(const std::vector<T>& vec) {
 
 // Add reverse iterators to vector
 
+// 1 2 3 4 5  
+// ^         ^
+// |         |
+
+// *v.rbegin() = 5
+// *(++v.rend()) = 1
+
+
 int main() {
   std::vector<int> vec = {1, 2, 3, 4, 5};
   std::sort(vec.rbegin(), vec.rend());
   PrintVec(vec); // 5 4 3 2 1
+  ++vec.rbegin();
 
   std::sort(vec.begin(), vec.end());
   auto mid = vec.begin() + vec.size() / 2;

@@ -179,5 +179,17 @@ Vim &mdash; modal editor (mode == режим). Несколько самых в�
 
 ## vscode
 
+User Interface: [link](https://code.visualstudio.com/docs/getstarted/userinterface):
+
+- Editor
+- Primary Side Bar
+- Status Bar
+- Activity Bar
+- Panel
+
+Palette
+
+Guide for C++ in vscode: [link](https://code.visualstudio.com/docs/cpp/config-linux).
+
 Plugins:
 `tabnine` &mdash; AI (just try)

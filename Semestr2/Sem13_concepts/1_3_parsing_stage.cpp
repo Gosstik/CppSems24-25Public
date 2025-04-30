@@ -7,17 +7,17 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-template <typename T>
-  requires std::is_pointer_v<T>
-void Foo() {
-  std::cout << 1 << '\n';
-}
+// template <typename T>
+//   requires std::is_pointer_v<T>
+// void Foo() {
+//   std::cout << 1 << '\n';
+// }
 
-template <typename T>
-  requires std::is_pointer_v<T>
-void Foo() {
-  std::cout << 2 << '\n';
-}
+// template <typename T>
+//   requires std::is_pointer_v<T>
+// void Foo() {
+//   std::cout << 2 << '\n';
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -47,12 +47,14 @@ void Baz() {
 }
 
 template <typename T>
-void Baz()
   requires std::is_pointer<T>::value
+void Baz()
 {
   std::cout << 2 << '\n';
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-int main() {}
+int main() {
+  // Baz<int*>();
+}

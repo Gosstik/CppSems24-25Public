@@ -40,6 +40,12 @@ void GetValue(InputIterator auto it) {
   return *it;
 }
 
+//// Same as above
+template <InputIterator It>
+void GetValue(It it) {
+  return *it;
+}
+
 int main() {
   std::vector<int> vec{1, 2, 3, 4, 5};
   FindIf1(vec.begin(), vec.end(), [](int i) {

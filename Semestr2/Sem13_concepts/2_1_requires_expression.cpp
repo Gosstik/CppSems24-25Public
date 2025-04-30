@@ -4,8 +4,10 @@
 
 template <typename T>
 void TestAdd() {
-  static constexpr bool res = requires(T a, T b) { a + b; };
-  // static_assert(res);
+  static constexpr bool res = requires(T a, T b) {
+    a + b;
+  };
+  // static_assert(res); // You may use it
   std::cout << res;
 }
 

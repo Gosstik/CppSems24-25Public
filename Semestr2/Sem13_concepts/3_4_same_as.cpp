@@ -8,7 +8,8 @@ namespace detail {
 
 template <typename T, typename U>
 concept SameAsHelper = std::is_same_v<T, U>;
-}
+
+} //namespace detail
 
 template <typename T, typename U>
 concept SameAs = detail::SameAsHelper<T, U> && detail::SameAsHelper<U, T>;

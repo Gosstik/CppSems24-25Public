@@ -36,10 +36,17 @@ void Bar(const T&) {
 // }
 
 template <typename T>
-  requires (!std::is_class_v<T>) // parenthesis are required in case ! is used
+  requires(!std::is_class_v<T>)  // parenthesis are required in case ! is used
 void Bar(T) {
   std::cout << 2 << '\n';
 }
+
+template <typename T>
+class Boo {
+  void Foo()
+    requires std::is_class<T>::type
+  {}
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 

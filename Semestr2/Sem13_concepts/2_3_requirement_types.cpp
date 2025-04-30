@@ -12,12 +12,16 @@ void Foo() {}
 
 //// 2) Nested requirements
 template <typename T, int N>
-  requires requires { requires sizeof(T) == N; }
+  requires requires {
+    requires sizeof(T) == N;
+  }
 void Bar() {}
 
 //// 3) Type requirements
 template <typename T>
-  requires requires { typename T::size_type; }
+  requires requires {
+    typename T::size_type;
+  }
 void Baz(T) {}
 
 ////////////////////////////////////////////////////////////////////////////////

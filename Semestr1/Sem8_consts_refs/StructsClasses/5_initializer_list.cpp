@@ -25,18 +25,18 @@ class String {
  public:
   // since C++11
   String(std::initializer_list<char> list)
-      : arr_(new char[list.size() + 1]),
-        sz_(list.size()),
-        cap_(sz_) {
-    std::copy(list.begin(), list.end(), arr_);
-    arr_[sz_] = '\0';
+      : data_(new char[list.size() + 1]),
+        size_(list.size()),
+        cap_(size_) {
+    std::copy(list.begin(), list.end(), data_);
+    data_[size_] = '\0';
   }
 
-  ~String() { delete[] arr_; }
+  ~String() { delete[] data_; }
 
  private:
-  char* arr_ = nullptr;
-  size_t sz_ = 0;
+  char* data_ = nullptr;
+  size_t size_ = 0;
   size_t cap_ = 0;
 };
 

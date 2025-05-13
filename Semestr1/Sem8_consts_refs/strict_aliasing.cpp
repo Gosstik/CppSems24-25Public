@@ -1,8 +1,16 @@
 #include <iostream>
 
-// strict aliasing
-// std::launder ...
+// Last sem in Semestr2
 
+// strict aliasing
+// ! compile without sanitizers
+
+//// Solutions:
+// -fno-strict-aliasing
+// make "volatile int* i" in Foo()
+
+// !!! replacing float* to char* removes UB
+// (char* and std::byte are exceptions in standard)
 int Foo(float *f, int *i) {
   *i = 1;
   *f = 0;

@@ -53,6 +53,31 @@ g++ -Wall -Werror -Wno-unused-variable program.cpp # -Wunused-variable will not 
 `as` &mdash; для ассемблирования
 `collect2` &mdash; для линковки
 
+Чтобы увидеть, когда и с какими опциями вызываются эти программы, нужно добавить флаг `-v` к компиляции:
+
+```bash
+g++ -v main.cpp
+
+# By default clang++ uses -stdlib=libstdc++
+clang++ -save-temps main.cpp -stdlib=libc++ # create preproc, assembler, ... files
+# For c++: libgcc, libg++
+```
+
+## Полезные утилиты
+
+```bash
+# Чтение бинарных данных (можно использовать при получении сообщения по сети)
+hexdump -С a.o
+
+# Для чтения ELF файлов (исполняемый файл в Linux)
+readelf a.out
+
+# Похож на readelf, но умеет в дизассемблирование
+objdump -d a.out
+
+# Вывести динамические библиотеки, от которых зависит бинарник
+ldd a.out
+```
 
 ## TODO
 

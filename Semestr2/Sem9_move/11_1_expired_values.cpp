@@ -30,6 +30,10 @@ std::string Bar() {
   return std::string("abc");  // copy elision
 }
 
+int main() {
+  std::string s(Bar());
+}
+
 // Implicit conversions:
 // https://en.cppreference.com/w/cpp/language/implicit_conversion
 // Specific about temporary materialization:

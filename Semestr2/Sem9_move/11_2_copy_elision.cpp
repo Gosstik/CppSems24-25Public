@@ -4,6 +4,26 @@
 // Copy elision and rvo, guaranteed copy elision
 // https://en.cppreference.com/w/cpp/language/copy_elision
 
+struct A {
+  A() : x(0) {
+    std::cout << "A()\n";
+  }
+  A(int x) : x(x) {
+    std::cout << "A(int)\n";
+  }
+  A(const A& other) : x(other.x) {
+    std::cout << "A(copy)\n";
+  }
+  A(A&& other) : x(other.x) {
+    std::cout << "A(move)\n";
+  }
+  ~A() {
+    std::cout << "~A()\n";
+  }
+
+  int x;
+};
+
 struct S {
   S(int x) : x(x) {
     std::cout << "S(int)\n";
@@ -19,14 +39,32 @@ struct S {
   }
 
   int x;
+  A a;
 };
 
-S Foo(S s) {
-  return s; //* move ctor is called
+S Foo0(S s) {
+  return s;  //* move ctor is called
 }
 
-S Bar(S&& s) {
-  return std::move(s); // case when std::move is reasonable
+S Foo1(S& s) {
+  return s;  // copy
+}
+
+S Foo2(S&& s) {
+  return s;  // no copy even without move !!!
+}
+
+A GetA(S&& s) {
+  return s.a;  // No move without explicit std::move
+}
+
+A GetAMove(S&& s) {
+  return std::move(s.a);
+}
+
+A GetAMoveTricky(S&& s) {
+  A&& a = std::move(s.a);
+  return a;
 }
 
 int main() {
@@ -46,5 +84,13 @@ int main() {
   // S s4 = Foo(S(1));
 
   //// s is reference inside bar, without std::move there will be copy
-  S s5 = Bar(S(1));
+  // S tmp(1);                     // S(int)
+  // S s5 = Foo0(tmp);             // S(copy) + S(move)
+  // S s6 = Foo1(tmp);             // S(copy)
+  // S s7 = Foo2(std::move(tmp));  // S(move)
+
+  //// case when std::move is reasonable in return statement
+  // A a1 = GetA(std::move(S(1)));      // A() + S(int) + A(copy)
+  // A a2 = GetAMove(std::move(S(1)));  // A() + S(int) + A(move)
+  A a3 = GetAMoveTricky(std::move(S(1)));  // A() + S(int) + A(move)
 }

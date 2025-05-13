@@ -1,5 +1,4 @@
 #include <iostream>
-#include <utility>
 
 struct S {
   S(int x) : x(x) {
@@ -29,23 +28,28 @@ S operator+(const S& lhs, const S& rhs) {
   return res; // NRVO
 }
 
+// // Ambiguous for rvalue
 // S operator+(S lhs, const S& rhs) {
 //   lhs += rhs;
 //   return lhs;
 // }
 
-S operator+(S&& lhs, const S& rhs) {
-  lhs += rhs;
-  return std::move(lhs);
-}
+// S operator+(S&& lhs, const S& rhs) {
+//   lhs += rhs;
+//   return lhs;
+// }
 
 void Foo(const int&) {}
 void Foo(int&) {}
 void Foo(int&&) {}
 
 int main() {
-  S sum = S(1) + S(2);
+  // S sum = S(1) + S(2);
 
-  int x;
-  Foo(1);
+  S s2 = S(2);
+  std::cout << "---------\n";
+  S s1 = S(1) + s2; // S(int) + S(move) vs S(int) + S(copy) with NRVO
+
+  // int x;
+  // Foo(1);
 }

@@ -18,11 +18,18 @@
 - thread (не будем смотреть)
 
 Флаги компиляции:
+
 ```bash
 g++ -fsanitize=address main.cpp
 g++ -fsanitize=undefined main.cpp
 
-g++  -fsanitize=address,undefined main.cpp
+g++ -fsanitize=address,undefined main.cpp
+```
+
+При использовании только флагов выше в отчёте об ошибке вместо строк из исходника может писаться (a.out+0x2d22). Чтобы показывались ссылки на строки из исходника, нужно добавить флаги `-g` и `-O0`:
+
+```bash
+clang++ -std=c++20 -O0 -g -fsanitize=address,undefined main.cpp
 ```
 
 Не все санитайзеры можно комбинировать между собой, так что просто перечислить все не получится. Обычно можно в качестве второго санитайзера указывать `undefined`, но вот использовать `address` + `thread` не рекомендуется.
@@ -113,3 +120,12 @@ If you use `clangd`, you have to add to `User Settings (JSON)` line:
 
 - [vscode debug](https://code.visualstudio.com/docs/editor/debugging)
 - [vscode c++ debug](https://code.visualstudio.com/docs/cpp/launch-json-reference)
+
+
+Преза с работой санитайзера: <https://www.usenix.org/sites/default/files/conference/protected-files/serebryany_atc12_slides.pdf>
+<https://clang.llvm.org/docs/AddressSanitizer.html>
+<https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html>
+Пример из раста: <https://cacm.acm.org/research/safe-systems-programming-in-rust/>
+GC in golang: <https://tip.golang.org/doc/gc-guide>
+GDB reference: <https://www.cs.princeton.edu/courses/archive/fall16/cos432/hw2/gdb-refcard.pdf>
+Исходники рантайма Address Sanitizer: <https://github.com/llvm/llvm-project/blob/main/llvm/lib/Transforms/Instrumentation/AddressSanitizer.cpp>

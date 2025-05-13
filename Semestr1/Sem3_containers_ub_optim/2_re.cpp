@@ -3,19 +3,7 @@
 
 
 int main() {
-	//// CE
-	\\; // CE, lexical
-
-	{
-		int x = 0;
-		std::cout << x +; // CE, syntactic
-	}
-
-	{
-		"abc" + 5.0f // CE, semantic
-	}
-
-	//// RE
+	//// RE (not UB)
 	{
 		std::vector<int> v(10);
 		std::cout << v[1'000'000] << '\n'; // RE, Segmentation Fault

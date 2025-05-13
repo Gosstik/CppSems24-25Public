@@ -23,7 +23,7 @@ int main() {
   bool is_inserted;
 
   // Unpack pair
-  std::tie(iter, is_inserted) = set_of_s.insert(value);
+  std::tie(std::ignore, is_inserted) = set_of_s.insert(value);
   assert(is_inserted);
 
   // std::tie and structured bindings

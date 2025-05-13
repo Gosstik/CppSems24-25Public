@@ -65,5 +65,5 @@ int main() {
   //     std::piecewise_construct, t, t
   // );  // try to implement !!!
 
-  Pair<Foo, Foo> p3( std::piecewise_construct, t, t);
+  Pair<Foo, Foo> p3(std::piecewise_construct, t, t);
 }

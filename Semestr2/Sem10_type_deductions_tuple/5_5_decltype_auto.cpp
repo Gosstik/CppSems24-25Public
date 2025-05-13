@@ -25,11 +25,11 @@ void Debug() = delete;
 int main() {
   std::vector<int> vi(3, 1);
   auto ie = GetElement(vi, 1);
-  Debug<decltype(ie)>(); // int&
+  // Debug<decltype(ie)>(); // int&
 
   std::vector<bool> vb(3, true);
   auto be = GetElement(vb, 1);
-  Debug<decltype(be)>(); // std::_Bit_reference
+  // Debug<decltype(be)>(); // std::_Bit_reference
 
   decltype(auto) val = ie; // decltype(auto) not only in return type
 }

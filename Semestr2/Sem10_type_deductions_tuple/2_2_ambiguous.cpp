@@ -1,3 +1,5 @@
+#include <iostream>
+
 // Type conversion does not work for deduction
 auto Foo(int x) {
   if (x > 0) {
@@ -7,5 +9,6 @@ auto Foo(int x) {
 }
 
 int main() {
-  // TODO
+  auto i = true ? -1 : 1u;
+  std::cout << i << '\n';
 }

@@ -1,7 +1,8 @@
 #include <iostream>
 
-// operator+=() and (Copy elision, RVO and NRVO)
+// operator+=() (aka "compound assignment")
 // operator+() --- not a method or friend, simple implementation with +=
+// Copy elision, RVO and NRVO using operator+()
 // a + b = 5 // return const or mark operator=() with ref qualifier
 // NO return a += b // nrvo (see copy_elision.cpp)
 // ++a and a++

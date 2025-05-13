@@ -12,6 +12,14 @@ void Print(Head head, Args... args) {
   Print(args...);
 }
 
+template <typename... Args>
+void FoldPrint(const Args&... args) {
+  ((std::cout << args << ' '), ...);
+  std::cout << '\n';
+}
+
 void TestPrint() {
-  Print(1, 2.9, 'c', "abcd");
+  // Print(1, 2.9, 'c', "abcd");
+  FoldPrint(1, 2.9, 'c', "abcd");
+  FoldPrint();
 }

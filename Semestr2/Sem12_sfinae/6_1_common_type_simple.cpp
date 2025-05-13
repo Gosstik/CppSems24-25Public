@@ -8,23 +8,29 @@
 template <typename... Types>
 struct common_type;
 
-template <typename T>
-struct common_type<T> {
-  using type = std::decay_t<T>;
-};
+template <typename... Types>
+using common_type_t = typename common_type<Types...>::type;
 
 template <typename T, typename U>
 struct common_type<T, U> {
   using type =
-      std::decay_t<decltype(true ? std::declval<T>() : std::declval<U>())>;
+      std::decay_t<decltype(false ? std::declval<T>() : std::declval<U>())>;
 };
 
-template <typename T, typename... Types>
-struct common_type<T, Types...>
-    : common_type<T, typename common_type<Types...>::type> {};
+template <typename T, typename U, typename... Types>
+struct common_type<T, U, Types...>
+    : common_type<common_type_t<T, U>, Types...> {};
 
-template <typename T, typename... Types>
-using common_type_t = typename common_type<T, Types...>::type;
+struct Granny {};
+struct Mom : Granny {};
+struct Dad : Granny {};
+struct Son : Mom, Dad {};
+
+void Foo() {
+  common_type_t<Mom, Granny> a;       // OK
+  common_type_t<Granny, Mom, Dad> b;  // OK
+  // common_type_t<Mom, Dad, Granny> c;  // CE, Granny should be first
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -43,6 +49,7 @@ template <typename...>
 void Bar(...) {}  // v2
 
 int main() {
-  Foo("abc", 0);  // CE, but expect to call v2 with SFINAE
+  Foo(1ull, 0);  // OK, simple conversion
+  // Foo("abc", 0);  // CE, but expect to call v2 with SFINAE
   Bar("abc", 0);  // OK, std::common_type
 }

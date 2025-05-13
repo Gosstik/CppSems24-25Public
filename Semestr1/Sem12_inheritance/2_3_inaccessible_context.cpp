@@ -1,8 +1,8 @@
 #include <iostream>
 
 struct Granny {
-  int x;
   void Foo() {}
+  int x;
 };
 
 struct Mom : private Granny {
@@ -11,7 +11,6 @@ struct Mom : private Granny {
 };
 
 struct Son : Mom {
-  int x;
   void Foo(Granny& g) {  // CE: Granny is inaccessible in this context
     std::cout << g.x << '\n';
   }
@@ -19,10 +18,12 @@ struct Son : Mom {
   void Bar(::Granny& g) {  // OK
     std::cout << g.x << '\n';
   }
+
+  int x;
 };
 
 int main() {
   Son s{};
-  std::cout << s.Granny::x;  // OK, main is Mom friend
+  std::cout << s.Granny::x;       // OK, main is Mom friend
   std::cout << s.Mom::Granny::x;  // OK, also correct
 }

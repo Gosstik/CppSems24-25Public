@@ -645,3 +645,13 @@ Syntax has some differences with original `git`. The main goal of exercises &mda
 - [docs](https://git-scm.com/)
 - `watch`
 
+Set path to ssh private key (better change `~/.ssh/config`).
+```bash
+git config core.sshCommand 'ssh -i path/to/the/key/privatkeyfilename'
+git config --unset core.sshCommand # fallback
+```
+
+```bash
+git push -u origin my_branch:remote_branch
+```
+

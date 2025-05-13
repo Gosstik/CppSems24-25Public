@@ -2,8 +2,6 @@
 #include <iostream>
 #include <vector>
 
-#include "hakhfw.h"
-
 struct S {
  private:
   int x_ = 0;

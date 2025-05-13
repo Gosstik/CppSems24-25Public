@@ -1,17 +1,23 @@
 #include <iostream>
 #include <vector>
 
-// 1
-void Foo(int** a) { std::cout << 1 << '\n'; }
-// 2
-void Foo(int* a[5]) { std::cout << 2 << '\n'; }  // same as above
-// 3
-void Foo(int (*a)[5]) {
-  std::cout << 3 << '\n';
-}  // different (but also point to the first element)
-
 // Explanation: Cases 1 and 2 perform array to pointer conversion.
 // Case 3 cannot perform that conversion, because outer type is pointer
+
+void Foo(int** a) {
+  std::cout << 1 << '\n';
+}
+
+void Foo(int* a[5]) {
+  std::cout << 2 << '\n';
+}
+
+// different (but also point to the first element)
+void Foo(int (*a)[5]) {
+  std::cout << 3 << '\n';
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 void Bar(int a[][5], size_t height) {
   // a[i][j] == *(a + i * 5 + j)
@@ -83,4 +89,6 @@ void Snippets() {
   }
 }
 
-int main() { Snippets(); }
+int main() {
+  Snippets();
+}

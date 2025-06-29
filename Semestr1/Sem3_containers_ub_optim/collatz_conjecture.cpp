@@ -1,4 +1,3 @@
-
 // UB, try with -O3 in godbolt
 int collatz_conjecture(int i) {
   while (i != 1) {
@@ -12,12 +11,7 @@ int collatz_conjecture(int i) {
   return i;
 }
 
-
-// i
-
-
 int main() {
   collatz_conjecture(10);
-
   return 5;
 }

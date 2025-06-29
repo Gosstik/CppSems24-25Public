@@ -12,6 +12,6 @@ int main() {
 	}
 
 	{
-		"abc" + 5.0f // CE, semantic
+		"abc" + 5.0f; // CE, semantic
 	}
 }

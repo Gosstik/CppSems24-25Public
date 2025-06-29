@@ -25,7 +25,7 @@ int main() {
   // 5 - CE
 
   int a[3][3]{};
-  Bar(a);  // 1 or 2 ???
+  Bar(a);  // 2
 
   int* b1[3] = a; // CE
   int(*b2)[3] = a; // OK
